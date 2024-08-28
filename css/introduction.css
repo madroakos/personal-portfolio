@@ -1,0 +1,301 @@
+html {
+  font-size: 62.5%;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  color: #212529;
+  font-size: 2em;
+  background-color: white;
+  width: 100vw;
+}
+
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #ef412d;
+}
+
+body::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+header {
+  width: 100%;
+  margin: 0;
+  background-color: #ef412d;
+}
+
+nav {
+  background-color: #ef412d;
+  font-weight: 400;
+  height: 100%;
+  overflow: hidden;
+}
+
+nav ul, nav ul li {
+  height: 100%;
+}
+
+nav ul li {
+  padding: 1em;
+}
+
+h1, h2, h3 {
+  margin: 0;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 2em;
+  margin: 0.7em 0;
+  animation: slideUp 1s;
+}
+
+.introduction a:link, .introduction a:visited, .introduction a:hover, .introduction a:active {
+  color: #212529;
+  text-decoration: none;
+  font-size: 0.8em;
+  border: 1px solid #212529;
+}
+
+.introductionSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  background: #ef412d;
+  margin-bottom: 2em;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  line-height: 3em;
+  width: 100%;
+  padding-bottom: 2rem;
+}
+
+.introduction a {
+  width: 100%;
+  text-align: center;
+  align-self: center;
+}
+
+.introduction p {
+  margin: 0;
+}
+
+.contactButton {
+  display: inline-block;
+  margin-top: 0.8em;
+}
+
+.portraitDiv {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.portraitDiv img {
+  object-fit: contain;
+  width: 70%;
+  animation: fadeIn 2s;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #212529;
+}
+
+.about, .skills, .portfolio, .experience, .contact {
+  margin-top: 1em;
+  padding: 0 2em;
+}
+
+.about h2, .skills h2, .portfolio h2, .experience h2, .contact h2 {
+  color: #ef412d;
+  font-weight: bold;
+  font-size: 2.5em;
+}
+
+@media screen and (min-width: 900px) {
+  .introductionSection {
+    flex-direction: row;
+  }
+  .portraitDiv {
+    width: fit-content;
+  }
+  .introduction a {
+    width: 50%;
+    align-self: start;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+.animated-text{
+  font-size: 1.3em;
+  font-weight: 400;
+  min-width: 280px;
+  text-wrap: nowrap;
+}
+
+.animated-text span{
+  position: relative;
+}
+
+.animated-text span::before{
+  content: "";
+  color: black;
+  animation: words 20s infinite;
+}
+
+.animated-text span::after{
+  content: "";
+  position: absolute;
+  width: calc(100% + 8px);
+  height: 110%;
+  transform: translateY(20%);
+  background-color: #ef4236;
+  border-left: 2px solid black;
+  right: -8px;
+  animation: cursor .8s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+  to{
+    border-left: 2px solid #ff7f5000;
+  }
+}
+
+@keyframes words {
+  0%,20%{
+    content: "Full-Stack Web Developer";
+  }
+  21%,40%{
+    content: "Pet Lover";
+  }
+  41%,60%{
+    content: "Musician";
+  }
+  61%,80%{
+    content: "Outdoor Lover";
+  }
+  81%,100%{
+    content: "Gamer";
+  }
+}
+
+@keyframes typing {
+  10%,15%,30%,35%,50%,55%,70%,75%,90%,95%{
+    width: 0;
+  }
+  5%,20%,25%,40%,45%,60%,65%,80%,85%{
+    width: calc(100% + 8px);
+  }
+}
+
+#secondContactButton {
+  position: relative;
+}
+
+#secondContactButton::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  background-color: black;
+  opacity: 0.2;
+  bottom: 50%;
+  left: 50%;
+  transition: height 0.3s ease, width 0.3s ease, bottom 0.3s ease, left 0.3s ease;
+}
+
+#secondContactButton:hover::before {
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .introductionSection {
+    padding-left: 2em;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .nav-links a {
+    position: relative;
+    z-index: 20;
+  }
+  .nav-links li{
+    position: relative;
+  }
+  .nav-links li {
+    width: max-content;
+  }
+  .nav-links li::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background: white;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.2;
+    transform: translateY(0.3em);
+    transition: height 0.3s ease;
+    z-index: 2;
+  }
+  .nav-links li:hover::after {
+    height: 200%;
+  }
+
+  .nav-links li::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background: black;
+    height: 0;
+    bottom: 0;
+    left: 0;
+    transition: height 0.3s ease;
+    z-index: 3;
+  }
+  .nav-links li:hover::before {
+    height: 5px;
+  }
+}
