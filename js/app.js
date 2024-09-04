@@ -7,7 +7,7 @@ sections.forEach(section => {
 
   button.addEventListener('click', (event) => {
     event.preventDefault();
-    element.scrollIntoView({ behavior: 'smooth' });
+    element.scrollIntoView({ behavior: 'smooth'});
   });
 
   symbol.addEventListener('click', (event) => {
@@ -16,10 +16,19 @@ sections.forEach(section => {
   });
 });
 
-const contactElement = document.getElementById('contact');
-const secondContactButton = document.getElementById('secondContactButton');
+document.addEventListener('DOMContentLoaded', () => {
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.classList.contains('introductionSection')) {
+        entry.target.classList.add('animate');
+      }
+    });
+  }, {
+    threshold: 0.1
+  });
 
-secondContactButton.addEventListener('click', (event) => {
-  event.preventDefault();
-  contactElement.scrollIntoView({ behavior: 'smooth' });
+  sections.forEach(section => {
+    observer.observe(section);
+  });
 });

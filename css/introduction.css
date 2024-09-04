@@ -1,7 +1,8 @@
 html {
-  font-size: 62.5%;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
+  line-height: 1.6rem;
+  overflow-x: clip;
 }
 
 body {
@@ -11,33 +12,59 @@ body {
   flex-direction: column;
   justify-content: start;
   color: #212529;
-  font-size: 2em;
   background-color: white;
   width: 100vw;
   position: relative;
 }
 
-body::-webkit-scrollbar {
-  width: 0.5em;
+:root {
+  --fs-600: 2.5rem;
+  --fs-500: 2rem;
+  --fs-name: clamp(1.5rem, 3vw + 1rem, 2.5rem);
+  --fs-titleCoding: clamp(1rem, 1vw + 1rem, 2.5rem);
+  --fs-450: 1.5rem;
+  --fs-400: 1rem;
+  --bg-color-intro: #ef412d;
+  --bg-color-base: #f8f9fa;
+  --text-color: #212529;
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: #ef412d;
+@media screen and (min-width: 900px) {
+  :root {
+    --fs-600: 3rem;
+    --fs-500: 2.5rem;
+    --fs-450: 1.5rem;
+    --fs-name: clamp(1.5rem, 2vw + 1rem, 5rem);
+    --fs-titleCoding: clamp(1.5rem, 1vw + 1rem, 3rem);
+    --fs-400: 1.3rem;
+  }
 }
 
-body::-webkit-scrollbar-track {
-  background-color: white;
+h2 {
+  font-size: var(--fs-600);
+}
+
+h3 {
+  font-size: var(--fs-500);
+}
+
+h4 {
+  font-size: var(--fs-450);
+}
+
+p, li {
+  font-size: var(--fs-400);
 }
 
 header {
   width: 100%;
   margin: 0;
   padding-bottom: 1em;
-  background-color: #ef412d;
+  background-color: var(--bg-color-intro);
 }
 
 nav {
-  background-color: #ef412d;
+  background-color: var(--bg-color-intro);
   font-weight: 400;
   height: 100%;
   overflow: hidden;
@@ -52,21 +79,36 @@ nav ul li {
 }
 
 h1, h2, h3 {
-  margin: 0;
+  margin: 1.3rem 0;
+}
+
+h2 {
+  position: relative;
+  width: max-content;
+}
+
+h2::after {
+  content: "";
+  display: block;
+  width: calc(90% + 1em);
+  height: 0.1em;
+  background-color: var(--bg-color-intro);
+  bottom: 0;
+  left: 0;
+  transform: translateY(0.2em) translateX(-1em);
 }
 
 .name {
-  font-weight: bold;
-  font-size: 2em;
+  font-size: var(--fs-name);
   margin: 0.7em 0;
   animation: slideUp 1s;
 }
 
 .introduction a:link, .introduction a:visited, .introduction a:hover, .introduction a:active {
-  color: #212529;
+  color: var(--text-color);
   text-decoration: none;
   font-size: 0.8em;
-  border: 1px solid #212529;
+  border: 1px solid var(--text-color);
 }
 
 .introductionSection {
@@ -76,16 +118,16 @@ h1, h2, h3 {
   width: 100%;
   z-index: 1;
   position: relative;
-  background: #ef412d;
-  margin-bottom: 2em;
+  background: var(--bg-color-intro);
+  margin-bottom: 1em;
 }
 
 .introduction {
   display: flex;
   flex-direction: column;
-  line-height: 3em;
   width: 100%;
   padding-bottom: 2rem;
+  line-height: clamp(2.5rem, 5vw + 1rem, 6rem);
 }
 
 .introduction a {
@@ -133,15 +175,152 @@ h1, h2, h3 {
   color: #212529;
 }
 
+.about p::first-letter, .portfolio p::first-letter {
+  padding-left: 1em;
+}
+
 .about, .skills, .portfolio, .experience, .contact {
-  margin-top: 1em;
   padding: 0 2em;
 }
 
 .about h2, .skills h2, .portfolio h2, .experience h2, .contact h2 {
-  color: #ef412d;
+  color: var(--bg-color-intro);
   font-weight: bold;
-  font-size: 2.5em;
+}
+
+.gridContainer {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  margin-top: 3em;
+}
+
+.experience h2 {
+  margin-bottom: 0.8em;
+}
+
+.experience h4 {
+  margin: 0.5em 0;
+  line-height: 1.1em;
+}
+
+.experience p {
+  margin: 0.5em;
+}
+
+.experience hr {
+  border-top: 1px solid var(--bg-color-intro);
+}
+
+@media screen and (width < 500px) {
+  #contact {
+    margin-bottom: 5em;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .gridContainer {
+    max-width: 100%;
+    grid-template-columns: 1fr 2fr; /* Create two equal-width columns */
+    grid-template-rows: repeat(4, min-content); /* Adjust to four rows */
+    grid-template-areas:
+            "about about"
+            "skills contact"/* Place all divs side by side */
+            "portfolio portfolio" /* Content spans all columns */
+            "experience experience"; /* Content spans all columns */
+  }
+
+  .about, .skills, .portfolio, .experience, .contact {
+    margin-bottom: 2em;
+    padding-top: 0;
+  }
+
+  .about {
+    grid-area: about;
+    height: max-content;
+    margin-top: 0;
+
+  }
+
+  .contact {
+    grid-area: contact;
+    height: max-content;
+    width: min-content;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2em;
+  }
+
+  .skills {
+    grid-area: skills;
+    height: max-content;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 2em;
+  }
+
+  .portfolio {
+    grid-area: portfolio;
+    height: max-content;
+    margin: auto;
+  }
+
+  .experience {
+    grid-area: experience;
+    height: max-content;
+    margin-bottom: 5em;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .gridContainer {
+    max-width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, min-content);
+    grid-template-areas:
+            "about portfolio"
+            "contact portfolio"
+            "skills portfolio"
+            "experience portfolio";
+    margin-bottom: 3em;
+    align-items: start;
+  }
+}
+
+@media screen and (min-width: 1300px) {
+  .gridContainer {
+    max-width: 100%;
+    grid-template-columns: 2fr 3fr;
+    grid-template-rows: repeat(4, min-content);
+  }
+
+  .portfolio .projects {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 3em;
+  }
+
+  .portfolio .projects .project {
+    margin: 0;
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .gridContainer .portfolio {
+    height: 100%;
+  }
+  .portfolio .projects .project {
+    margin: 0;
+    width: 45%;
+  }
+
+  .nav-links {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 900px) {
@@ -154,6 +333,10 @@ h1, h2, h3 {
   .introduction a {
     width: 50%;
     align-self: start;
+  }
+
+  .projects .project {
+    width: calc(100% - 2em);
   }
 }
 
@@ -169,8 +352,24 @@ h1, h2, h3 {
   }
 }
 
+section {
+  opacity: 0;
+  transform: translateX(-30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+section.animate {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.introductionSection {
+  opacity: 1;
+  transform: translateX(0);
+}
+
 .animated-text{
-  font-size: 1.3em;
+  font-size: var(--fs-titleCoding);
   font-weight: 400;
   min-width: 280px;
   text-wrap: nowrap;
@@ -178,11 +377,13 @@ h1, h2, h3 {
 
 .animated-text span{
   position: relative;
+  height: 100%;
+  width: 100%;
 }
 
 .animated-text span::before{
   content: "";
-  color: black;
+  color: var(--text-color);
   animation: words 20s infinite;
 }
 
@@ -192,8 +393,8 @@ h1, h2, h3 {
   width: calc(100% + 8px);
   height: 110%;
   transform: translateY(20%);
-  background-color: #ef4236;
-  border-left: 2px solid black;
+  background-color: var(--bg-color-intro);
+  border-left: 2px solid var(--text-color);
   right: -8px;
   animation: cursor .8s infinite, typing 20s steps(14) infinite;
 }
@@ -231,35 +432,6 @@ h1, h2, h3 {
   }
 }
 
-#secondContactButton {
-  position: relative;
-  transition: letter-spacing 0.3s ease, font-size 0.3s ease;
-}
-
-#secondContactButton:hover {
-  letter-spacing: 0.2em;
-  font-size: 1em;
-}
-
-/*#secondContactButton::before {*/
-/*  content: "";*/
-/*  position: absolute;*/
-/*  width: 0;*/
-/*  height: 0;*/
-/*  background-color: black;*/
-/*  opacity: 0.2;*/
-/*  bottom: 50%;*/
-/*  left: 50%;*/
-/*  transition: height 0.3s ease, width 0.3s ease, bottom 0.3s ease, left 0.3s ease;*/
-/*}*/
-
-/*#secondContactButton:hover::before {*/
-/*  width: 100%;*/
-/*  height: 100%;*/
-/*  bottom: 0;*/
-/*  left: 0;*/
-/*}*/
-
 #aboutButtonSymbol{
   display: none;
 }
@@ -280,12 +452,90 @@ h1, h2, h3 {
   display: none;
 }
 
+.portfolio h4 {
+  margin: 1em 0;
+}
+
+.projectImage {
+  width: 100%;
+}
+
+.project {
+  margin-bottom: 3em;
+}
+
+.project h4 {
+  color: var(--bg-color-intro);
+}
+
+.portfolio a {
+  display: flex;
+  height: 2.5em;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-color-base);
+  color: var(--text-color);
+  border: 2px solid var(--bg-color-intro);
+  border-radius: 50px;
+  font-size: var(--fs-400);
+  font-weight: 700;
+  transition: background-color 0.1s ease, color 0.1s ease;
+}
+
+.portfolio a,
+.portfolio a:active,
+.portfolio a:focus,
+.portfolio a:visited,
+.portfolio a:hover {
+  outline: none;
+  text-decoration: none;
+  text-underline: none;
+}
+
+.portfolio a:hover {
+  background: var(--bg-color-intro);
+  color: var(--bg-color-base);
+  cursor: pointer;
+}
+
+.linksContainer {
+  display: flex;
+  justify-content: end;
+  gap: 1em;
+}
+
+.github {
+  width: 2.5em;
+  text-align: center;
+}
+
+.checkitout {
+  width: 8em;
+}
+
+#contactCardsDiv {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.card {
+  width: max-content;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.card p {
+  margin: 0.5em;
+}
+
+
 
 @media screen and (width < 900px) {
-  #secondContactButton {
-    width: 100%;
-  }
-
   .introduction {
     width: 90%;
   }
@@ -298,8 +548,7 @@ h1, h2, h3 {
     position: fixed;
     display: flex;
     justify-content: space-evenly;
-    background: white;
-    border: 1px solid #212529;
+    background: var(--bg-color-base);
     z-index: 100;
     width: 100vw;
     bottom: 0;
@@ -358,10 +607,6 @@ h1, h2, h3 {
   #contactButtonSymbol {
     display: block;
   }
-
-  #contact {
-    margin-bottom: 5em;
-  }
 }
 
 @media screen and (min-width: 900px) {
@@ -379,7 +624,7 @@ h1, h2, h3 {
     transition: font-size 1s ease;
   }
   .nav-links li:hover {
-    font-size: 1.2em;
+    font-size: 1.5em;
     transition: font-size 1s ease;
   }
 
@@ -394,5 +639,16 @@ h1, h2, h3 {
   .portraitDiv img {
     width: 75%;
     height: auto;
+  }
+
+  .project {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 75%;
+  }
+
+  .projectImage {
+    justify-items: center;
   }
 }
