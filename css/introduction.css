@@ -54,6 +54,9 @@ h4 {
 
 p, li {
   font-size: var(--fs-400);
+  font-weight: 500;
+  max-width: 60ch;
+  line-height: 2rem;
 }
 
 header {
@@ -137,6 +140,7 @@ h2::after {
 }
 
 .introduction p {
+  line-height: clamp(2.5rem, 5vw + 1rem, 6rem);
   margin: 0;
 }
 
@@ -154,6 +158,12 @@ h2::after {
 .portraitDiv img {
   object-fit: contain;
   animation: fadeIn 2s;
+  filter: grayscale(70%);
+  transition: filter 0.5s ease;
+}
+
+.portraitDiv img:hover {
+  filter: grayscale(0%);
 }
 
 .nav-links {
@@ -197,7 +207,7 @@ h2::after {
 }
 
 .experience h2 {
-  margin-bottom: 0.8em;
+  margin-bottom: 3rem;
 }
 
 .experience h4 {
@@ -213,8 +223,17 @@ h2::after {
   border-top: 1px solid var(--bg-color-intro);
 }
 
+.experience .job, .experience hr {
+    margin-bottom: 3rem;
+}
+
+.portfolio {
+  margin-left: 0;
+  justify-self: start;
+}
+
 @media screen and (width < 500px) {
-  #contact {
+  .experience {
     margin-bottom: 5em;
   }
 }
@@ -222,13 +241,13 @@ h2::after {
 @media screen and (min-width: 500px) {
   .gridContainer {
     max-width: 100%;
-    grid-template-columns: 1fr 2fr; /* Create two equal-width columns */
-    grid-template-rows: repeat(4, min-content); /* Adjust to four rows */
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(4, min-content);
     grid-template-areas:
             "about about"
-            "skills contact"/* Place all divs side by side */
-            "portfolio portfolio" /* Content spans all columns */
-            "experience experience"; /* Content spans all columns */
+            "skills contact"
+            "portfolio portfolio"
+            "experience experience";
   }
 
   .about, .skills, .portfolio, .experience, .contact {
@@ -283,8 +302,11 @@ h2::after {
             "contact portfolio"
             "skills portfolio"
             "experience portfolio";
-    margin-bottom: 3em;
     align-items: start;
+  }
+
+  .portfolio {
+    background-color: rgba(239, 65, 45, 0.1);
   }
 }
 
