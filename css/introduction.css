@@ -161,6 +161,7 @@ h2::after {
 .portraitDiv img {
   object-fit: contain;
   animation: fadeIn 2s;
+  width: 60%;
   filter: grayscale(70%);
   transition: filter 0.5s ease;
 }
@@ -250,10 +251,6 @@ h2::after {
 .skills ul li:nth-child(12) {
   font-family: Arial, sans-serif;
   font-weight: 900;
-}
-
-.fa-phone {
-  animation: heartbeat 1.5s ease-in-out infinite both, vibrateText 0.3s linear infinite both;
 }
 
 .gridContainer .about {
